@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from plannerapp.views import index_page
+from plannerapp.views import tasks
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
+    path('tasks/', tasks),
 ]
