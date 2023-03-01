@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'plannerapp',
     'users',
-    'huey.contrib.djhuey'
+    'huey.contrib.djhuey',
+    'tgbotapp',
 ]
 
 MIDDLEWARE = [

@@ -1,16 +1,13 @@
 from huey import crontab
-from huey.contrib.djhuey import periodic_task, task, db_periodic_task, HUEY as huey
+from huey.contrib.djhuey import task, db_periodic_task, HUEY as huey
 from plannerapp.models import Task
 from users.models import MyUser
-from notifiers import get_notifier
-from TOKEN import TOKEN
+from tgbotapp.management.commands.bot import bot
 
 
 @task()
 def telegram_notification(chatId, my_message):
-    telegram = get_notifier('telegram')
-    telegram.notify(token=TOKEN, chat_id=chatId, message=my_message)
-
+    bot.send_message(chatId, my_message)
 
 
 # @periodic_task(crontab(minute='*/1'))
@@ -35,5 +32,5 @@ def reading_db():
     print(f'Эти задачи будут запланированы: {task_QuerySet_new}')
 
     for i in task_QuerySet_new:
-        chatId = MyUser.objects.filter(user_id=i[2]).values_list('telegramUserId')[0][0]
-        telegram_notification.schedule((chatId, f'Привет, это django, задача запланирована на {i[1]}'),eta=i[1])
+        # chatId = MyUser.objects.filter(user_id=i[2]).values_list('telegramUserId')[0][0]
+        # telegram_notification.schedule((chatId, f'Привет, это django, задача запланирована на {i[1]}'),eta=i[1])
