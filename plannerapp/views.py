@@ -15,3 +15,7 @@ def tasks(request):
         'mytasks': mytasks,
     }
     return HttpResponse(template.render(context, request))
+
+
+def base(request):
+    return render(request, 'base.html')
