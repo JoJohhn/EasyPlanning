@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
     path('tasks/', tasks),
-    path('base/', base),
+    path('base/', base, name='base'),
     path('register/', RegisterUser.as_view(), name="register"),
 ]
