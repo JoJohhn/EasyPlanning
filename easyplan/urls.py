@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from plannerapp.views import index_page
 from plannerapp.views import tasks, base
-from users.views import RegisterUser
+from users.views import register_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
     path('tasks/', tasks),
     path('base/', base, name='base'),
-    path('register/', RegisterUser.as_view(), name="register"),
+    path('register/', register_user, name="register"),
 ]
