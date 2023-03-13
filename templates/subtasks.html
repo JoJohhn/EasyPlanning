@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .subtasks {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 20px;
+        }
+
+        .subtask-name {
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <ul class="subtasks">
+            {% for subtask in subtasks %}
+                <li>
+                    <div class="subtask-name">
+                        <a href="{% url 'edit_task' subtask.id %}">{{ subtask.taskName }}</a>
+                        {{ subtask.task }}
+                    </div>
+                    {% if subtask.subtasks.all %}
+                        {% with subtasks=subtask.subtasks.all %}
+                            {% include 'subtasks.html' %}
+                        {% endwith %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

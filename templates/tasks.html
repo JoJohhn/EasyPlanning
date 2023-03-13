@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+        .task-tree {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 20px;
+        }
+
+        .task-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        </style>
+    </head>
+    <body>
+    <h1>Tasks</h1>
+        <u1 class="task-tree">
+            {% for task in top_level_tasks %}
+                <li>
+                     <div class="task-name">
+                         <a href="{% url 'edit_task' task.id %}">{{ task.taskName }}</a>
+                         {{ task.task }}
+                     </div>
+                    {% if task.subtasks.all %}
+                        {% with subtasks=task.subtasks.all %}
+                            {% include 'subtasks.html' %}
+                        {% endwith %}
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>У вас нет ни одной задачи</li>
+            {% endfor %}
+        </u1>
+    </body>
+</html>

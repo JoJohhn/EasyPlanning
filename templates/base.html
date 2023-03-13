@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Button Links</title>
+	<style>
+		/* Center the buttons */
+		.button-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 50px;
+		}
+		/* Style the buttons */
+		.button {
+			padding: 10px 20px;
+			background-color: #ADD8E6; /* set background color to light blue */
+			color: white;
+			font-size: 18px;
+			border: none;
+			border-radius: 20px; /* set border radius to make buttons rounded */
+			cursor: pointer;
+			margin: 10px;
+		}
+		/* Style the site name */
+		.site-name {
+			color: #6fbbd3;
+			font-size: 36px; /* increase font size */
+			font-weight: bold;
+			text-align: center;
+			margin-top: 20px;
+		}
+		/* Center the container */
+		.container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+	</style>
 </head>
 <body>
-    <button><a href="{% url 'register' %}">Регистрация</a></button>
+	<div class="container">
+		<h1 class="site-name">Добро пожаловать в персональный планировщик</h1>
+		<div class="button-container">
+			<a href="{% url 'login' %}">
+				<button class="button">Войти</button>
+			</a>
+			<a href="{% url 'register' %}">
+				<button class="button">Зарегистрироваться</button>
+			</a>
+		</div>
+	</div>
 </body>
 </html>

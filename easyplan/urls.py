@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from plannerapp.views import index_page
-from plannerapp.views import tasks, base
-from users.views import register_user
+from plannerapp.views import index_page, tasks_view, base, edit_task
+from users.views import register_user, LoginUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
-    path('tasks/', tasks),
     path('base/', base, name='base'),
     path('register/', register_user, name="register"),
+    path('login/', LoginUser.as_view(), name='login'),
+    path('tasks/', tasks_view, name='tasks'),
+    path('edit/<int:task_id>/', edit_task, name='edit_task'),
 ]
