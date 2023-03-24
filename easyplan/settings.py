@@ -126,6 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'base'
 
 HUEY = {
     'huey_class': 'huey.SqliteHuey',  # Huey implementation to use.
