@@ -22,6 +22,7 @@
                     <div class="subtask-name">
                         <a href="{% url 'edit_task' subtask.id %}">{{ subtask.taskName }}</a>
                         {{ subtask.task }}
+                        {{ subtask.taskStartTime }}
                     </div>
                     {% if subtask.subtasks.all %}
                         {% with subtasks=subtask.subtasks.all %}

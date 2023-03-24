@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-        <style>
+<head>
+  <title>Tasks</title>
+     <style>-->
         .task-tree {
             list-style: none;
             margin-left: 0;
@@ -15,15 +14,23 @@
             margin-bottom: 5px;
         }
         </style>
-    </head>
-    <body>
-    <h1>Tasks</h1>
-        <u1 class="task-tree">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="navbar-nav ml-auto">
+        <a class="btn btn-primary" href="{% url 'add_task' %}">Добавить задачу</a>
+        <a class="btn btn-secondary" href="{% url 'logout' %}">Выйти</a>
+      </div>
+  </nav>
+  <h1>Задачи</h1>
+  <table>
+       <ul class="task-tree">
             {% for task in top_level_tasks %}
                 <li>
                      <div class="task-name">
                          <a href="{% url 'edit_task' task.id %}">{{ task.taskName }}</a>
                          {{ task.task }}
+                         {{ task.taskStartTime }}
                      </div>
                     {% if task.subtasks.all %}
                         {% with subtasks=task.subtasks.all %}
@@ -34,6 +41,7 @@
             {% empty %}
                 <li>У вас нет ни одной задачи</li>
             {% endfor %}
-        </u1>
-    </body>
+       </ul>
+  </table>
+</body>
 </html>

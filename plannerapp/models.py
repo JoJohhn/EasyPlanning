@@ -12,3 +12,11 @@ class Task(models.Model):
 
     def __str__(self):
         return f'{self.taskName}'
+
+
+    def get_descendants(self):
+        descendants = []
+        for subtask in self.subtasks.all():
+            descendants.append(subtask)
+            descendants.extend(subtask.get_descendants())
+        return descendants

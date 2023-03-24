@@ -10,6 +10,7 @@ def telegram_notification(chatId, my_message):
     bot.send_message(chatId, my_message)
 
 
+
 # @periodic_task(crontab(minute='*/1'))
 # def every_five_mins():
 #     print('Every five minutes this will be printed by the consumer')
@@ -17,7 +18,7 @@ def telegram_notification(chatId, my_message):
 
 @db_periodic_task(crontab(minute='*/1'))
 def reading_db():
-    tasks_QuerySet = Task.objects.values_list('id', 'taskStartTime', 'userId')
+    tasks_QuerySet = Task.objects.values_list('id', 'taskStartTime', 'userId', 'taskName')
     print(tasks_QuerySet)
 
     idtasksold = huey.get('test2')
@@ -31,6 +32,7 @@ def reading_db():
     task_QuerySet_new = [i for i in tasks_QuerySet if i[0] not in idtasksold]
     print(f'Эти задачи будут запланированы: {task_QuerySet_new}')
 
-    # for i in task_QuerySet_new:
-    #     chatId = MyUser.objects.filter(user_id=i[2]).values_list('telegramUserId')[0][0]
-    #     telegram_notification.schedule((chatId, f'Привет, это django, задача запланирована на {i[1]}'),eta=i[1])
+
+    for i in task_QuerySet_new:
+        chatId = MyUser.objects.filter(user_id=i[2]).values_list('tgUser')[0][0]
+        telegram_notification.schedule((chatId, f'Пора выполнять задачу: {i[3]}'),eta=i[1])

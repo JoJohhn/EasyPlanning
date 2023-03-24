@@ -133,7 +133,7 @@ HUEY = {
     'results': True,  # Store return values of tasks.
     'store_none': False,  # If a task returns None, do not save to results.
     'immediate': False,  # If DEBUG=True, run synchronously.
-    'utc': False,  # Use UTC for all times internally.
+    'utc': True,  # Use UTC for all times internally.
 
     'consumer': {
         'workers': 1,

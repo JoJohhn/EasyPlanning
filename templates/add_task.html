@@ -4,16 +4,10 @@
     <title>Center Button Example</title>
     <style>
       #text-container {
+        font-size: 20px;
         position: absolute;
         left: 50%;
-        top: 25%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-      }
-      #link-container {
-        position: absolute;
-        left: 50%;
-        top: 70%;
+        top: 20%;
         transform: translate(-50%, -50%);
         text-align: center;
       }
@@ -48,20 +42,14 @@
   </head>
   <body>
     <div id="text-container">
-      <h2>Регистрация</h2>
-    </div>
-    <div id="link-container">
-      <a href="https://t.me/EasyPlanning_Bot"> Ссылка на телеграм бота </a>
+      <h2>Добавление задачи</h2>
     </div>
     <div id="form-container">
       <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Сохранить</button>
       </form>
     </div>
   </body>
 </html>
-
-
-

@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from plannerapp.views import index_page, tasks_view, base, edit_task
-from users.views import register_user, LoginUser
+from plannerapp.views import index_page, tasks_view, base, edit_task, add_task
+from users.views import register_user, LoginUser, logout_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,8 @@ urlpatterns = [
     path('base/', base, name='base'),
     path('register/', register_user, name="register"),
     path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', logout_user, name='logout'),
     path('tasks/', tasks_view, name='tasks'),
+    path('add_task/', add_task, name='add_task'),
     path('edit/<int:task_id>/', edit_task, name='edit_task'),
 ]

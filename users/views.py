@@ -1,5 +1,7 @@
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+
 from users.forms import MyUserCreationForm, MyUserLoginForm
 from users.models import MyUser
 from django.contrib.auth.models import User
@@ -25,7 +27,11 @@ def register_user(request):
 class LoginUser(LoginView):
     template_name = 'login.html'
     form_class = MyUserLoginForm
-    # redirect_authenticated_user = True
 
     def get_success_url(self):
         return reverse_lazy('tasks')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('base')
